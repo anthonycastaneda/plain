@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: hosting-render
+    name: plain
     repo: https://github.com/anthonycastaneda/plain
     runtime: static
     buildCommand: chmod a+x build.sh && ./build.sh
