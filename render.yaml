@@ -1,7 +1,7 @@
 services:
   - type: web
     name: hosting-render
-    repo: https://github.com/jmooring/hosting-render
+    repo: https://github.com/anthonycastaneda/plain
     runtime: static
     buildCommand: chmod a+x build.sh && ./build.sh
     staticPublishPath: public
