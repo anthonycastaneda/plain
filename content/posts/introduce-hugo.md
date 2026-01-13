@@ -1,7 +1,6 @@
 ---
 title: "Introduce Hugo"
 date: 2022-10-20T17:12:11+07:00
-comment: true
 tags: ["hugo", "tech"]
 ---
 
@@ -40,7 +39,6 @@ title: "creating a new theme"
 bah and humbug
 $
 ```
-
 
 ## Some Definitions
 
@@ -180,8 +178,6 @@ $
 
 Hugo created two XML files, which is standard, but there are no HTML files.
 
-
-
 ### Test the New Site
 
 Verify that you can run the built-in web server. It will dramatically shorten your development cycle if you do. Start it by running the "server" command. If it is successful, you will see output similar to the following:
@@ -223,7 +219,7 @@ That second warning is easier to explain. We haven’t created a template to be 
 
 Now for the first warning. It is for the home page. You can tell because the first layout that it looked for was “index.html.” That’s only used by the home page.
 
-I like that the verbose flag causes Hugo to list the files that it's searching for. For the home page, they are index.html, _default/list.html, and _default/single.html. There are some rules that we'll cover later that explain the names and paths. For now, just remember that Hugo couldn't find a template for the home page and it told you so.
+I like that the verbose flag causes Hugo to list the files that it's searching for. For the home page, they are index.html, _default/list.html, and_default/single.html. There are some rules that we'll cover later that explain the names and paths. For now, just remember that Hugo couldn't find a template for the home page and it told you so.
 
 At this point, you've got a working installation and site that we can build upon. All that’s left is to add some content and a theme to display it.
 
@@ -234,7 +230,6 @@ Hugo doesn't ship with a default theme. There are a few available (I counted a d
 We're going to create a new theme called "zafta." Since the goal of this tutorial is to show you how to fill out the files to pull in your content, the theme will not contain any CSS. In other words, ugly but functional.
 
 All themes have opinions on content and layout. For example, Zafta uses "post" over "blog". Strong opinions make for simpler templates but differing opinions make it tougher to use themes. When you build a theme, consider using the terms that other themes do.
-
 
 ### Create a Skeleton
 
@@ -436,7 +431,6 @@ $ hugo server --watch --verbose
 ```
 
 Here's sample output showing Hugo detecting a change to the template for the home page. Once generated, the web browser automatically reloaded the page. I've said this before, it's amazing.
-
 
 ```shell
 $ rm -rf public
@@ -736,7 +730,7 @@ And, if that were entirely true, this tutorial would be much shorter. There are 
 
 We're working with posts, which are in the content/post/ directory. That means that their section is "post" (and if we don't do something weird, their type is also "post").
 
-Hugo uses the section and type to find the template file for every piece of content. Hugo will first look for a template file that matches the section or type name. If it can't find one, then it will look in the _default/ directory. There are some twists that we'll cover when we get to categories and tags, but for now we can assume that Hugo will try post/single.html, then _default/single.html.
+Hugo uses the section and type to find the template file for every piece of content. Hugo will first look for a template file that matches the section or type name. If it can't find one, then it will look in the _default/ directory. There are some twists that we'll cover when we get to categories and tags, but for now we can assume that Hugo will try post/single.html, then_default/single.html.
 
 Now that we know the search rule, let's see what we actually have available:
 
@@ -937,7 +931,7 @@ $ cat public/index.html
     <h1><a href="http://localhost:1313/post/first-post/">first</a></h1>
 <script>document.write('<script src="http://'
         + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
+  + ':1313/livereload.js?mindelay=10"></'
         + 'script>')</script></body>
 </html>
 ```
@@ -985,8 +979,8 @@ Knowing that hugo is using the slug to generate the file name, the simplest solu
 ```shell
 $ vi config.toml
 [permalinks]
-	page: "/:title/"
-	about: "/:filename/"
+ page: "/:title/"
+ about: "/:filename/"
 ```
 
 Generate the web site and verify that this didn't work. Hugo lets "slug" or "URL" override the permalinks setting in the configuration file. Go ahead and comment out the slug in content/about.md, then generate the web site to get it to be created in the right place.
@@ -1006,7 +1000,7 @@ $ vi themes/zafta/layouts/partials/header.html
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{{ .Title }}</title>
+ <title>{{ .Title }}</title>
 </head>
 <body>
 :wq
@@ -1024,10 +1018,13 @@ The most noticeable difference between a template call and a partials call is th
 ```
 {{ template "theme/partials/header.html" . }}
 ```
+
 versus
+
 ```
 {{ partial "header.html" . }}
 ```
+
 Both pass in the context.
 
 Let's change the home page template to use these new partials.

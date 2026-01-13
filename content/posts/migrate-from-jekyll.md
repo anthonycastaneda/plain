@@ -1,7 +1,6 @@
 ---
 title: "Migrate to Hugo from Jekyll"
 date: 2021-10-22T17:12:11+07:00
-comment: true
 tags: ["hugo"]
 ---
 
@@ -43,7 +42,7 @@ git rm _site
 git submodule add -b gh-pages git@github.com:your-username/your-repo.git public
 ```
 
-2. Or, change the Hugo configuration to use `_site` instead of `public`.
+1. Or, change the Hugo configuration to use `_site` instead of `public`.
 
 ```
 {

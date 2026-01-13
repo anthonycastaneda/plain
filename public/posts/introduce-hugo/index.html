@@ -319,7 +319,7 @@
 </span></span><span style="display:flex;"><span>WARN: 2014/09/29 Unable to locate layout: [404.html]
 </span></span></code></pre></div><p>That second warning is easier to explain. We haven’t created a template to be used to generate “page not found errors.” The 404 message is a topic for a separate tutorial.</p>
 <p>Now for the first warning. It is for the home page. You can tell because the first layout that it looked for was “index.html.” That’s only used by the home page.</p>
-<p>I like that the verbose flag causes Hugo to list the files that it&rsquo;s searching for. For the home page, they are index.html, _default/list.html, and _default/single.html. There are some rules that we&rsquo;ll cover later that explain the names and paths. For now, just remember that Hugo couldn&rsquo;t find a template for the home page and it told you so.</p>
+<p>I like that the verbose flag causes Hugo to list the files that it&rsquo;s searching for. For the home page, they are index.html, _default/list.html, and_default/single.html. There are some rules that we&rsquo;ll cover later that explain the names and paths. For now, just remember that Hugo couldn&rsquo;t find a template for the home page and it told you so.</p>
 <p>At this point, you&rsquo;ve got a working installation and site that we can build upon. All that’s left is to add some content and a theme to display it.</p>
 <h2 id="create-a-new-theme">Create a New Theme</h2>
 <p>Hugo doesn&rsquo;t ship with a default theme. There are a few available (I counted a dozen when I first installed Hugo) and Hugo comes with a command to create new themes.</p>
@@ -699,7 +699,7 @@
 <p>And, if that were entirely true, this tutorial would be much shorter. There are a few things to know that will make creating a new template much easier. Don&rsquo;t worry, though, that&rsquo;s all to come.</p>
 <h3 id="add-content-to-the-posts">Add Content to the Posts</h3>
 <p>We&rsquo;re working with posts, which are in the content/post/ directory. That means that their section is &ldquo;post&rdquo; (and if we don&rsquo;t do something weird, their type is also &ldquo;post&rdquo;).</p>
-<p>Hugo uses the section and type to find the template file for every piece of content. Hugo will first look for a template file that matches the section or type name. If it can&rsquo;t find one, then it will look in the _default/ directory. There are some twists that we&rsquo;ll cover when we get to categories and tags, but for now we can assume that Hugo will try post/single.html, then _default/single.html.</p>
+<p>Hugo uses the section and type to find the template file for every piece of content. Hugo will first look for a template file that matches the section or type name. If it can&rsquo;t find one, then it will look in the _default/ directory. There are some twists that we&rsquo;ll cover when we get to categories and tags, but for now we can assume that Hugo will try post/single.html, then_default/single.html.</p>
 <p>Now that we know the search rule, let&rsquo;s see what we actually have available:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#433e56;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ find themes/zafta -name single.html | xargs ls -l
 </span></span><span style="display:flex;"><span>-rw-r--r--  <span style="color:#c5a3ff">1</span> quoha  staff  <span style="color:#c5a3ff">132</span> Sep <span style="color:#c5a3ff">29</span> 17:31 themes/zafta/layouts/_default/single.html
@@ -854,7 +854,7 @@
 </span></span><span style="display:flex;"><span>    &lt;h1&gt;&lt;a href<span style="color:#ffb8d1">=</span><span style="color:#1bc5e0">&#34;http://localhost:1313/post/first-post/&#34;</span>&gt;first&lt;/a&gt;&lt;/h1&gt;
 </span></span><span style="display:flex;"><span>&lt;script&gt;document.write<span style="color:#ffb8d1">(</span><span style="color:#1bc5e0">&#39;&lt;script src=&#34;http://&#39;</span>
 </span></span><span style="display:flex;"><span>        + <span style="color:#ffb8d1">(</span>location.host <span style="color:#ffb8d1">||</span> <span style="color:#1bc5e0">&#39;localhost&#39;</span><span style="color:#ffb8d1">)</span>.split<span style="color:#ffb8d1">(</span><span style="color:#1bc5e0">&#39;:&#39;</span><span style="color:#ffb8d1">)[</span>0<span style="color:#ffb8d1">]</span>
-</span></span><span style="display:flex;"><span>		+ <span style="color:#1bc5e0">&#39;:1313/livereload.js?mindelay=10&#34;&gt;&lt;/&#39;</span>
+</span></span><span style="display:flex;"><span>  + <span style="color:#1bc5e0">&#39;:1313/livereload.js?mindelay=10&#34;&gt;&lt;/&#39;</span>
 </span></span><span style="display:flex;"><span>        + <span style="color:#1bc5e0">&#39;script&gt;&#39;</span><span style="color:#ffb8d1">)</span>&lt;/script&gt;&lt;/body&gt;
 </span></span><span style="display:flex;"><span>&lt;/html&gt;
 </span></span></code></pre></div><p>Notice that the &ldquo;about&rdquo; link is listed with the posts? That&rsquo;s not desirable, so let&rsquo;s change that first.</p>
@@ -889,8 +889,8 @@
 </span></span></code></pre></div><p>Knowing that hugo is using the slug to generate the file name, the simplest solution is to change the slug. Let&rsquo;s do it the hard way and change the permalink in the configuration file.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#433e56;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>$ vi config.toml
 </span></span><span style="display:flex;"><span><span style="color:#ffb8d1">[</span>permalinks<span style="color:#ffb8d1">]</span>
-</span></span><span style="display:flex;"><span>	page: <span style="color:#1bc5e0">&#34;/:title/&#34;</span>
-</span></span><span style="display:flex;"><span>	about: <span style="color:#1bc5e0">&#34;/:filename/&#34;</span>
+</span></span><span style="display:flex;"><span> page: <span style="color:#1bc5e0">&#34;/:title/&#34;</span>
+</span></span><span style="display:flex;"><span> about: <span style="color:#1bc5e0">&#34;/:filename/&#34;</span>
 </span></span></code></pre></div><p>Generate the web site and verify that this didn&rsquo;t work. Hugo lets &ldquo;slug&rdquo; or &ldquo;URL&rdquo; override the permalinks setting in the configuration file. Go ahead and comment out the slug in content/about.md, then generate the web site to get it to be created in the right place.</p>
 <h2 id="sharing-templates">Sharing Templates</h2>
 <p>If you&rsquo;ve been following along, you probably noticed that posts have titles in the browser and the home page doesn&rsquo;t. That&rsquo;s because we didn&rsquo;t put the title in the home page&rsquo;s template (layouts/index.html). That&rsquo;s an easy thing to do, but let&rsquo;s look at a different option.</p>
@@ -901,7 +901,7 @@
 </span></span><span style="display:flex;"><span>&lt;!DOCTYPE html&gt;
 </span></span><span style="display:flex;"><span>&lt;html&gt;
 </span></span><span style="display:flex;"><span>&lt;head&gt;
-</span></span><span style="display:flex;"><span>	&lt;title&gt;<span style="color:#ffb8d1">{{</span> .Title <span style="color:#ffb8d1">}}</span>&lt;/title&gt;
+</span></span><span style="display:flex;"><span> &lt;title&gt;<span style="color:#ffb8d1">{{</span> .Title <span style="color:#ffb8d1">}}</span>&lt;/title&gt;
 </span></span><span style="display:flex;"><span>&lt;/head&gt;
 </span></span><span style="display:flex;"><span>&lt;body&gt;
 </span></span><span style="display:flex;"><span>:wq
